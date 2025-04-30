@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Adminlte from "./adminlte";
 import "./Auditoria.css";
 
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
+
 const Auditoria = () => {
   const [auditoria, setAuditoria] = useState([]);
   const [error, setError] = useState("");
@@ -13,7 +15,7 @@ const Auditoria = () => {
   useEffect(() => {
     const fetchAuditoria = async () => {
       try {
-        const response = await fetch("http://localhost:8000/auditoria/");
+        const response = await fetch(`${apiUrl}/auditoria/`);
         const data = await response.json();
         if (Array.isArray(data)) {
           setAuditoria(data);
