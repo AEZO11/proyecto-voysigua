@@ -32,7 +32,10 @@ app.add_middleware(
 
 
 sys.stdout.reconfigure(encoding="utf-8")
-locale.setlocale(locale.LC_ALL, "es_ES.UTF-8")
+try:
+    locale.setlocale(locale.LC_ALL, "es_ES.UTF-8")
+except locale.Error:
+    locale.setlocale(locale.LC_ALL, "C")
 
 # Registrar rutas
 app.include_router(auth_routes, prefix="/auth")
