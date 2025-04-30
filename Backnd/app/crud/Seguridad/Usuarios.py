@@ -62,7 +62,7 @@ async def obtener_usuario_por_id(db: AsyncSession, id: int):
     return usuario if usuario else None
 
 
-# Actualizar usuario (asíncrono) con procedimiento almacenado
+# Actualizar usuario (asíncrono) con procedimiento almacenado.
 async def actualizar_usuario(db: AsyncSession, id: int, user_data: dict):
     user = await db.get(Usuario, id)
     if not user:
