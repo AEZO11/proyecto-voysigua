@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 import Adminlte from "./adminlte";
 import { tienePermiso } from "../Utils/permisos";
 
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
+
 const GestionEmpleados = () => {
   const [textoFiltro, setTextoFiltro] = useState("");
   const [empleados, setEmpleados] = useState([]);
@@ -35,7 +37,7 @@ const GestionEmpleados = () => {
   useEffect(() => {
     const fetchEmpleados = async () => {
       try {
-        const res = await fetch("http://localhost:8000/empleados/");
+        const res = await fetch(`${apiUrl}/empleados/`);
         const data = await res.json();
         if (Array.isArray(data)) {
           setEmpleados(data);
@@ -58,7 +60,7 @@ const GestionEmpleados = () => {
   const handleSaveClick = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/empleados/${editingEmpleadosId}`,
+        `${apiUrl}/empleados/${editingEmpleadosId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -68,7 +70,7 @@ const GestionEmpleados = () => {
 
       if (!response.ok) throw new Error("Error al actualizar el Empleado");
 
-      const updated = await fetch("http://localhost:8000/empleados/");
+      const updated = await fetch(`${apiUrl}/empleados/`);
       const data = await updated.json();
       setEmpleados(data);
       setEditingEmpleadosId(null);
@@ -84,7 +86,7 @@ const GestionEmpleados = () => {
   const deleteEmpleadosFromServer = async (cod_empleado) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/empleados/${cod_empleado}`,
+        `${apiUrl}/empleados/${cod_empleado}`,
         { method: "DELETE" }
       );
       const responseBody = await response.text();
@@ -165,7 +167,7 @@ const GestionEmpleados = () => {
     if (formValues) {
       try {
         const response = await fetch(
-          `http://localhost:8000/empleados/despedir/${empleado.cod_empleado}`,
+          `${apiUrl}/empleados/despedir/${empleado.cod_empleado}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -179,7 +181,7 @@ const GestionEmpleados = () => {
           Swal.fire("Éxito", result.message, "success");
 
           // Recargar empleados después del despido
-          const res = await fetch("http://localhost:8000/empleados/");
+          const res = await fetch(`${apiUrl}/empleados/`);
           const data = await res.json();
           setEmpleados(data);
         } else {
