@@ -70,7 +70,7 @@ async def crear_usuario(usuario: UsuarioCreate, db: AsyncSession = Depends(get_a
         raise HTTPException(status_code=500, detail="Ocurrió un error inesperado al crear el usuario.")
 
 
-# Endpoint para actualizar un usuario (ASÍNCRONO)
+# Endpoint para actualizar un usuario (ASÍNCRONO).
 @router.put("/usuarios/{id}", response_model=dict)
 async def modificar_usuario(id: int, usuario: UsuarioUpdate, db: AsyncSession = Depends(get_async_db)):
     try:
