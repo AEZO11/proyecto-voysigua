@@ -74,6 +74,7 @@ async def crear_usuario(usuario: UsuarioCreate, db: AsyncSession = Depends(get_a
 @router.put("/usuarios/{id}", response_model=dict)
 async def modificar_usuario(id: int, usuario: UsuarioUpdate, db: AsyncSession = Depends(get_async_db)):
     try:
+        print(f"usuario to update: {usuario}")
         response = await actualizar_usuario(db, id, usuario.dict(exclude_unset=True))
         return response
 
