@@ -96,7 +96,6 @@ async def actualizar_usuario(db: AsyncSession, id: int, user_data: dict):
 
     await db.execute(stmt, {
         "id": id,
-        "cod_persona": user_data.get("cod_persona"),
         "nombre": user_data.get("nombre"),
         "password": user_data.get("password"),
         "username": user_data.get("username"),
