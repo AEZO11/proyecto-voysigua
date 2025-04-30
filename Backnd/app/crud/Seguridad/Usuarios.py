@@ -90,13 +90,12 @@ async def actualizar_usuario(db: AsyncSession, id: int, user_data: dict):
 
     stmt = text("""
         CALL actualizar_usuario(
-            :id, :cod_persona, :nombre, :password, :username, :estado, :remember_token
+            :id, :nombre, :password, :username, :estado, :remember_token
         )
     """)
 
     await db.execute(stmt, {
         "id": id,
-        "cod_persona": user_data.get("cod_persona"),
         "nombre": user_data.get("nombre"),
         "password": user_data.get("password"),
         "username": user_data.get("username"),
