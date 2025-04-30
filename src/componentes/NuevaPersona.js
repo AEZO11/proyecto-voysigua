@@ -96,7 +96,7 @@ const NuevaPersona = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            cod_ciudad: formulario.ciudad,
+            cod_ciudad: 1,
             cod_tipo_direccion: formulario.tipoDireccion,
             direccion1: formulario.direccion1,
             direccion2: formulario.direccion2,
