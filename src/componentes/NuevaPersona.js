@@ -51,7 +51,7 @@ const NuevaPersona = () => {
       });
 
       // 1. Insertar Persona
-      const responsePersona = await fetch(`${apiUrl}/personas`, {
+      const responsePersona = await fetch(`${apiUrl}/personas/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
