@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import Swal from "sweetalert2";
 
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
+
 const NuevoEmpleado = () => {
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ const NuevoEmpleado = () => {
   useEffect(() => {
     const fetchPersonas = async () => {
       try {
-        const response = await fetch("http://localhost:8000/personas/");
+        const response = await fetch(`${apiUrl}/personas/`);
         const data = await response.json();
 
         if (Array.isArray(data)) {
@@ -58,7 +60,7 @@ const NuevoEmpleado = () => {
         },
       });
 
-      const response = await fetch("http://localhost:8000/empleados/", {
+      const response = await fetch(`${apiUrl}/empleados/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
