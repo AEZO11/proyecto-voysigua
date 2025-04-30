@@ -47,15 +47,15 @@ const MyComponent = () => {
   }, []);
 
   const handleEditClick = (usuario) => {
-    setEditingUserId(usuario.id);
-    setEditedUserData({
-      cod_persona: usuario.cod_persona,
-      nombre: usuario.nombre,
-      password: "", // dejar vacío si no se quiere cambiar
-      username: usuario.username,
-      estado: usuario.estado
-    });
-  };
+  setEditingUserId(usuario.id);
+  setEditedUserData({
+    cod_persona: usuario.cod_persona,
+    nombre: usuario.nombre,
+    password: "", // vacío para no cambiarla si el usuario no la edita
+    username: usuario.username,
+    estado: usuario.estado
+  });
+};
 
   const handleSaveClick = async () => {
     try {
