@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import Adminlte from "./adminlte";
 import { tienePermiso } from "../Utils/permisos"; // ajusta la ruta según tu estructura
 
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
+
 const MyComponent = () => {
   const [textoFiltro, setTextoFiltro] = useState("");
   const [usuarios, setUsuarios] = useState([]);
@@ -32,7 +34,7 @@ const MyComponent = () => {
   useEffect(() => {
     const fetchUsuarios = async () => {
       try {
-        const response = await fetch("http://localhost:8000/usuarios/");
+        const response = await fetch(`${apiUrl}/usuarios/`);
         const data = await response.json();
         setUsuarios(data);
       } catch (error) {
@@ -51,7 +53,7 @@ const MyComponent = () => {
   const handleSaveClick = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/usuarios/${editingUserId}`,
+        `${apiUrl}/usuarios/${editingUserId}`,
         {
           method: "PUT",
           headers: {
@@ -66,7 +68,7 @@ const MyComponent = () => {
       }
 
       const fetchUpdatedUsuarios = async () => {
-        const response = await fetch("http://localhost:8000/usuarios/");
+        const response = await fetch(`${apiUrl}/usuarios/`);
         const data = await response.json();
         setUsuarios(data);
       };
@@ -94,7 +96,7 @@ const MyComponent = () => {
 
   const deleteUserFromServer = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8000/usuarios/${id}`, {
+      const response = await fetch(`${apiUrl}/usuarios/${id}`, {
         method: "DELETE",
       });
 
