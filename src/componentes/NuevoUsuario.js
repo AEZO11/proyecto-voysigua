@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { FaArrowLeft } from "react-icons/fa";
 import "./NuevoUsuario.css";
 
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
+
 const NuevoUsuario = () => {
   const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ const NuevoUsuario = () => {
   useEffect(() => {
     const fetchPersonas = async () => {
       try {
-        const response = await fetch("http://localhost:8000/personas/");
+        const response = await fetch(`${apiUrl}/personas/`);
         const data = await response.json();
         setPersonas(data);
       } catch (error) {
@@ -75,7 +77,7 @@ const NuevoUsuario = () => {
         },
       });
 
-      const response = await fetch("http://localhost:8000/usuarios/", {
+      const response = await fetch(`${apiUrl}/usuarios/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
