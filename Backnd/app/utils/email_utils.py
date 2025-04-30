@@ -39,7 +39,8 @@ def enviar_email(email: str, otp_code: str):
         return True
 
     except smtplib.SMTPAuthenticationError as e:
-        logger.error(f"❌ Fallo autenticación SMTP: {e.smtp_error.decode()}")
+        error_msg = e.smtp_error.decode() if isinstance(e.smtp_error, bytes) else str(e.smtp_error)
+        logger.error(f"❌ Fallo autenticación SMTP: {error_msg}")
 
     except smtplib.SMTPAuthenticationError:
         print("❌ [ERROR] Fallo en la autenticación del servidor SMTP. Revisa EMAIL_USER y EMAIL_PASS.")
