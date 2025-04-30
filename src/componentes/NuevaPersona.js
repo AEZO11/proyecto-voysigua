@@ -3,6 +3,7 @@ import "./NuevaPersona.css";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import Swal from "sweetalert2";
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
 
 const NuevaPersona = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const NuevaPersona = () => {
       });
 
       // 1. Insertar Persona
-      const responsePersona = await fetch("http://localhost:8000/personas/", {
+      const responsePersona = await fetch(`${apiUrl}/personas`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -71,7 +72,7 @@ const NuevaPersona = () => {
       const codPersona = nuevaPersona.cod_persona; // ✔️
 
       // 2. Insertar Teléfono
-      const responseTelefono = await fetch("http://localhost:8000/telefonos/", {
+      const responseTelefono = await fetch(`${apiUrl}/telefonos/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -90,7 +91,7 @@ const NuevaPersona = () => {
 
       // 3. Insertar Dirección
       const responseDireccion = await fetch(
-        `http://localhost:8000/direccion/?cod_persona=${codPersona}`,
+        `${apiUrl}/direccion/?cod_persona=${codPersona}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
