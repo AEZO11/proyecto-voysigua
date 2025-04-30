@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import Adminlte from "./adminlte";
 import { tienePermiso } from "../Utils/permisos";
 
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
+
 const GestionPersonas = () => {
   const [textoFiltro, setTextoFiltro] = useState("");
   const [personas, setPersonas] = useState([]);
@@ -34,7 +36,7 @@ const GestionPersonas = () => {
   useEffect(() => {
     const fetchPersonas = async () => {
       try {
-        const response = await fetch("http://localhost:8000/personas");
+        const response = await fetch(`${apiUrl}/personas`);
         const data = await response.json();
         setPersonas(data);
       } catch (error) {
@@ -53,7 +55,7 @@ const GestionPersonas = () => {
   const handleSaveClick = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/personas/${editingPersonasId}`,
+        `${apiUrl}/personas/${editingPersonasId}`,
         {
           method: "PUT",
           headers: {
@@ -66,7 +68,7 @@ const GestionPersonas = () => {
       if (!response.ok) throw new Error("Error al actualizar la persona");
 
       const fetchUpdatedPersonas = async () => {
-        const response = await fetch("http://localhost:8000/personas");
+        const response = await fetch(`${apiUrl}/personas`);
         const data = await response.json();
         setPersonas(data);
       };
@@ -88,7 +90,7 @@ const GestionPersonas = () => {
   const deletePersonasFromServer = async (cod_persona) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/personas/${cod_persona}`,
+        `${apiUrl}/personas/${cod_persona}`,
         {
           method: "DELETE",
         }
