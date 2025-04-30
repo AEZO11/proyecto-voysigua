@@ -133,7 +133,7 @@ async def leer_persona(persona_id: int, db: AsyncSession = Depends(get_async_db)
 
 # ✅ Ruta para obtener todas las personas (SÍNCRONA)
 @router.get("/personas", response_model=List[PersonaResponse])
-def obtener_todas_las_personas(skip: int = 0, limit: int = 10, db: Session = Depends(get_sync_db)):  
+def obtener_todas_las_personas(skip: int = 0, limit: int = 100, db: Session = Depends(get_sync_db)):  
     result = db.execute(select(PersonaModel).offset(skip).limit(limit))  # ✅ No usar await aquí
     return result.scalars().all()
 
