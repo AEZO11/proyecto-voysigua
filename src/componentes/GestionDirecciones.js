@@ -5,6 +5,8 @@ import { MdDelete, MdCancel } from "react-icons/md";
 import Adminlte from "./adminlte";
 import "./GestionDirecciones.css";
 
+const apiUrl = "https://proyecto-voysigua-4gqd.onrender.com";
+
 const GestionDirecciones = () => {
   const [direcciones, setDirecciones] = useState([]);
   const [editingDireccionId, setEditingDireccionId] = useState(null);
@@ -19,7 +21,7 @@ const GestionDirecciones = () => {
 
   const fetchDirecciones = async () => {
     try {
-      const response = await fetch("http://localhost:8000/direcciones/");
+      const response = await fetch(`${apiUrl}/direcciones/`);
       const data = await response.json();
       if (Array.isArray(data)) {
         setDirecciones(data);
@@ -40,7 +42,7 @@ const GestionDirecciones = () => {
   const handleSaveClick = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/direccion/${editingDireccionId}`,
+        `${apiUrl}/direccion/${editingDireccionId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -77,7 +79,7 @@ const GestionDirecciones = () => {
     if (confirmacion.isConfirmed) {
       try {
         const response = await fetch(
-          `http://localhost:8000/direcciones/${cod_direccion}`,
+          `${apiUrl}/direcciones/${cod_direccion}`,
           {
             method: "DELETE",
           }
