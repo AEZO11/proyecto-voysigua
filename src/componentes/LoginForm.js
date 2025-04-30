@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaKey } from "react-icons/fa";
 
+const apiUrl = "https://proyecto-voysigua.vercel.app";
+
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +23,7 @@ const LoginForm = ({ onLogin }) => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:8000/login", {
+      const response = await fetch(`${apiUrl}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +54,7 @@ const LoginForm = ({ onLogin }) => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:8000/verify-otp", {
+      const response = await fetch(`${apiUrl}/verify-otp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +93,7 @@ const LoginForm = ({ onLogin }) => {
 
   const handleResendOtp = async () => {
     try {
-      const response = await fetch("http://localhost:8000/resend-otp", {
+      const response = await fetch(`${apiUrl}/resend-otp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
